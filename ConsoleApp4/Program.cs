@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
- 
+
 namespace pendaftaran_pasien
 {
     internal class Program
@@ -71,13 +71,13 @@ namespace pendaftaran_pasien
 
 
         // Metode untuk membuat database
-      
 
 
 
 
-    // Method untuk menu pasien
-    public void PasienMenu(SqlConnection con)
+
+        // Method untuk menu pasien
+        public void PasienMenu(SqlConnection con)
         {
             while (true)
             {
@@ -748,23 +748,23 @@ namespace pendaftaran_pasien
 
         // Function to generate ID Antrian
         private string GenerateIDAntrian(SqlConnection con)
-    {
-        string ID_Antrian = "A00001"; // You can choose any initial ID
-        string query = "SELECT MAX(ID_Antrian) FROM Antrian";
-        SqlCommand cmd = new SqlCommand(query, con);
-        object result = cmd.ExecuteScalar();
-        if (result != null && result != DBNull.Value)
         {
-            string maxID = result.ToString();
-            int maxInt;
-            if (int.TryParse(maxID.Substring(1), out maxInt)) // Parse the numeric part
+            string ID_Antrian = "A00001"; // You can choose any initial ID
+            string query = "SELECT MAX(ID_Antrian) FROM Antrian";
+            SqlCommand cmd = new SqlCommand(query, con);
+            object result = cmd.ExecuteScalar();
+            if (result != null && result != DBNull.Value)
             {
-                maxInt++; // Increment
-                ID_Antrian = "A" + maxInt.ToString("00000"); // Format back to 6 characters
+                string maxID = result.ToString();
+                int maxInt;
+                if (int.TryParse(maxID.Substring(1), out maxInt)) // Parse the numeric part
+                {
+                    maxInt++; // Increment
+                    ID_Antrian = "A" + maxInt.ToString("00000"); // Format back to 6 characters
+                }
             }
+            return ID_Antrian;
         }
-        return ID_Antrian;
-    }
 
         // Function to generate No Antrean
         private string GenerateNoAntrean(SqlConnection con)
