@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-
+ 
 namespace pendaftaran_pasien
 {
     internal class Program
